@@ -39,7 +39,7 @@ class PlayersController < ApplicationController
     players_url = "http://kiaenzona.com/jugadores-liga-endesa"
     players_html = Nokogiri::HTML(open(players_url))
 
-    players_html.css("table.listaJugadores > tr").each do |player_row|
+    players_html.css("table.listaJugadores > tr").first(2).each do |player_row|
       name = player_row.css('td[1]//text()').to_s
       team_name = player_row.css('td[2]/text()').to_s
 
@@ -60,7 +60,6 @@ class PlayersController < ApplicationController
   end
 
   def import_player player
-    puts "-----> IMPORT PLAYER"
     players_url = player.href
     players_url.force_encoding('binary')
     players_url = WEBrick::HTTPUtils.escape(players_url)
@@ -80,7 +79,6 @@ class PlayersController < ApplicationController
     end
     player_html.css("td.fichaJugadorimg").each do |player_image|
       image = Array.wrap(player_image.css("img").map { |link| link['src'] })[0].to_s
-      #IO.copy_stream(download, '~/image.png')
       player.image = image
     end
     player.save!

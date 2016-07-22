@@ -1,11 +1,11 @@
 %td{colspan: 7}
-  = form_for @player, url: @player.new_record? ? players_path : player_path(@player), remote: true, html: {class: "form-horizontal"} do |f|
+  = form_for @statistic, url: @statistic.new_record? ? statistics_path : statistic_path(@statistic), remote: true, html: {class: "form-horizontal"} do |f|
     .form-group
       .col-md-3.control-label= f.label "Name"
       .col-md-5= f.text_field :name, class: 'string form-control'
     .form-group
       .col-md-3.control-label= f.label "Position"
-      .col-md-5= f.select :position, Player.position.options, {}, { :class => 'form-control select2' }
+      .col-md-5= f.select :position, Statistic.position.options, {}, { :class => 'form-control select2' }
     .form-group
       .col-md-3.control-label= f.label "Team"
       .col-md-5= f.select :team, Team.active, {}, { :class => 'form-control select2' }

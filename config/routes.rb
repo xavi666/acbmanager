@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   resources :players do
     get  'import', on: :collection
   end
-  
+  resources :statistics do
+    get  'import', on: :member
+  end
+
   root "home#index"
   
   # The priority is based upon order of creation: first created -> highest priority.
