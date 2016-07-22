@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Acbmanager</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => "reload" %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => "reload" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    Back End
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= render partial: "back/navbar" %>
+
+    <div class="container">
+      <div class="login-container">
+        <div class="form-box">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

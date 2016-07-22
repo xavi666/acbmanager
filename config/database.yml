@@ -1,0 +1,45 @@
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
+development:
+  adapter:  postgresql
+  host:     localhost
+  encoding: unicode
+  database: acbmanager_development
+  pool:     5
+  username: acbmanager
+  password:
+  template: template0
+
+staging:
+  adapter:  postgresql
+  host:     localhost
+  encoding: unicode
+  database: acbmanager_staging
+  pool:     5
+  username: acbmanager
+  password:
+  template: template0
+
+test:
+  adapter:  postgresql
+  host:     localhost
+  encoding: unicode
+  database: acbmanager_test
+  pool:     5
+  username: acbmanager
+  password:
+  template: template0
+
+production:
+  adapter:  postgresql
+  host:     localhost
+  encoding: unicode
+  database: acbmanager_production
+  pool:     5
+  username: acbmanager
+  password:
+  template: template0

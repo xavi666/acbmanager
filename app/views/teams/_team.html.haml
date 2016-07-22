@@ -1,0 +1,10 @@
+%td= object.id
+%td= team_image object
+%td= object.short_code
+%td= link_to object.name, object
+%td
+  - if object.active
+    %i.glyphicon.glyphicon-ok
+  - else
+    %i.glyphicon.glyphicon-remove
+%td.actions= smart_listing_item_actions [{name: :custom, url: edit_team_path(object), icon: "glyphicon glyphicon-active", remote: true, if: !object.active?, title:  "Activate team"}, {name: :edit, url: edit_team_path(object)}, {name: :destroy, url: team_path(object), confirmation: "Are you sure you want to delete this?"}]

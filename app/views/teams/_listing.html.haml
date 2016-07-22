@@ -1,0 +1,31 @@
+= smart_listing_controls_for(:teams, {class: "form-inline text-right"}) do
+  -# Add search box to form - it submits the form automatically on text change
+  .form-group.filter.input-append
+    = text_field_tag :name, params["name"], class: "search form-control", 
+                              placeholder: "Search by Name...", autocomplete: :off
+
+  %button.btn.btn-primary.disabled{type: :submit}
+    %span.glyphicon.glyphicon-search
+
+- unless smart_listing.empty?
+  %table.table.table-striped
+    %thead
+      %th.col-md-1= smart_listing.sortable "ID", "id"
+      %th.col-md-1
+      %th.col-md-2= smart_listing.sortable "Short Code", "short_code"
+      %th.col-md-3= smart_listing.sortable "Name", "name"
+      %th.col-md-1= smart_listing.sortable "Active", "active"
+      %th.col-md-2= "Options"
+
+    %tbody
+      - smart_listing.collection.each do |o|
+        %tr.editable{data: {id: o.id}}
+          = smart_listing.render object: o, partial: "teams/team", locals: {object: o}
+
+      = smart_listing.item_new colspan: 6, link: new_team_path
+
+  -# Render nice pagination links fitted for Bootstrap 3 by default
+  = smart_listing.paginate
+  = smart_listing.pagination_per_page_links
+- else
+  %p.warning No records!

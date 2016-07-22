@@ -1,0 +1,17 @@
+%td{colspan: 6}
+  = form_for @team, url: @team.new_record? ? teams_path : team_path(@team), remote: true, html: {class: "form-horizontal"} do |f|
+    .form-group
+      .col-md-3.control-label= f.label "Short Code"
+      .col-md-5= f.text_field :short_code, class: 'string form-control'
+    .form-group
+      .col-md-3.control-label= f.label "Name"
+      .col-md-5= f.text_field :name, class: 'string form-control'
+    .form-group
+      .col-md-3.control-label= f.label "Active"
+      .col-md-5= f.check_box :active
+
+    .form-group
+      .col-md-3
+      .col-md-5
+        = f.submit "Save", class: "btn btn-primary"
+        %button.btn.btn-link.cancel Cancel
