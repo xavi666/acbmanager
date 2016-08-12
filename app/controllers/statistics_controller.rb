@@ -43,6 +43,7 @@ class StatisticsController < ApplicationController
 
           player.href = Array.wrap(player_row.css("td[1]/a").map { |link| link['href'] })[0].to_s
           import_statistic player
+        end
       end
     end
     redirect_to statistics_path and return
@@ -55,13 +56,13 @@ class StatisticsController < ApplicationController
     player_html = Nokogiri::HTML(open(players_url))
 
     player_html.css("table.fichaJugadorStats > tr").each do |row_statistic|
+      puts "-------> STATISTIC"
       puts row_statistic
+      partido = row_statistic.css("th[1]/text()")
+      puts partido
+      puts '-----'
+      puts '-----'
     end
-    player_html.css("td.fichaJugadorimg").each do |player_image|
-      image = Array.wrap(player_image.css("img").map { |link| link['src'] })[0].to_s
-      statistic.image = image
-    end
-    statistic.save!
   end
 
   private

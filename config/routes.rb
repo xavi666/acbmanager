@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     get  'import', on: :collection
   end
   resources :statistics do
-    get  'import', on: :member
+    get  'import', on: :collection
   end
 
   root "home#index"
