@@ -1,21 +1,36 @@
 %td{colspan: 7}
   = form_for @statistic, url: @statistic.new_record? ? statistics_path : statistic_path(@statistic), remote: true, html: {class: "form-horizontal"} do |f|
     .form-group
-      .col-md-3.control-label= f.label "Name"
-      .col-md-5= f.text_field :name, class: 'string form-control'
+      .col-md-3.control-label= f.label "Player"
+      .col-md-5= @statistic.player
     .form-group
       .col-md-3.control-label= f.label "Position"
-      .col-md-5= f.select :position, Statistic.position.options, {}, { :class => 'form-control select2' }
+      .col-md-5= @statistic.player.position.text
     .form-group
       .col-md-3.control-label= f.label "Team"
-      .col-md-5= f.select :team, Team.active, {}, { :class => 'form-control select2' }
+      .col-md-5= @statistic.player.team
     .form-group
-      .col-md-3.control-label= f.label "URL"
-      .col-md-5= f.text_field :href, class: 'string form-control'
+      .col-md-3.control-label= f.label "Season"
+      .col-md-5= f.text_field :season, class: 'string form-control'
     .form-group
-      .col-md-3.control-label= f.label "Active"
-      .col-md-5= f.check_box :active
-
+      .col-md-3.control-label= f.label "Statistics"
+      .col-md-5
+        %table.table.table-striped
+        - (1..Statistic.num_games).each do |week|
+          - statistic = @statistic.send("week_"+week.to_s)
+          = statistic
+          - statistic.each do |field|
+            - if week == 1
+              %tr
+                %th= field
+            %tr
+              %td=# value
+      
+        %tr
+          = @statistic.promedio
+        %tr
+          = @statistic.total
+      
     .form-group
       .col-md-3
       .col-md-5

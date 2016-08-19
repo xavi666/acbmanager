@@ -2,11 +2,8 @@
 %td= object.season
 %td= player_image object.player
 %td= link_to object.player.name, object.player
-%td= team_image object.player.team
-%td= link_to object.player.team.name, object.player.team
 %td
-  - if object.active
-    %i.glyphicon.glyphicon-ok
-  - else
-    %i.glyphicon.glyphicon-remove
-%td.actions= smart_listing_item_actions [{name: :custom, url: edit_statistic_path(object), icon: "glyphicon glyphicon-active", remote: true, if: !object.active?, title:  "Activate statistic"}, {name: :edit, url: edit_statistic_path(object)}, {name: :destroy, url: statistic_path(object), confirmation: "Are you sure you want to delete this?"}]
+  = team_image object.player.team
+  = link_to object.player.team, object.player.team
+%td= object.player.position.text
+%td.actions= smart_listing_item_actions [{name: :custom, url: edit_statistic_path(object), icon: "glyphicon glyphicon-active", remote: true, title:  "Activate statistic"}, {name: :edit, url: edit_statistic_path(object)}, {name: :destroy, url: statistic_path(object), confirmation: "Are you sure you want to delete this?"}]

@@ -23,6 +23,9 @@ class StatisticsController < ApplicationController
   end
 
   def update
+    puts "---> UPDATE"
+    puts statistic_params
+    puts params
     @statistic.update_attributes(statistic_params)
   end
 
@@ -55,11 +58,49 @@ class StatisticsController < ApplicationController
     players_url = WEBrick::HTTPUtils.escape(players_url)
     player_html = Nokogiri::HTML(open(players_url))
 
+    unless statistic = Statistic.where(season: "2016").where(player_id: player.id).first
+      puts "--------> STATISTIC CREATE"
+      statistic = Statistic.new
+      statistic.season = "2016"
+      statistic.player_id = player.id
+      statistic.save!
+    end
+    puts statistic.inspect
+
     player_html.css("table.fichaJugadorStats > tr").each do |row_statistic|
       puts "-------> STATISTIC"
-      puts row_statistic
-      partido = row_statistic.css("th[1]/text()")
+      partido = row_statistic.css("th[1]/text()").to_s.downcase
       puts partido
+      if partido == 'promedio' || partido == 'total'
+        puts "---->  Totals Promerdio"
+        minutos = row_statistic.css("td[2]/text()")
+        puntos = row_statistic.css("td[3]/text()")
+        t2 = row_statistic.css("td[4]/text()")
+        t3 = row_statistic.css("td[6]/text()")
+        t1 = row_statistic.css("td[8]/text()")
+        a = row_statistic.css("td[10]/text()")
+        br = row_statistic.css("td[11]/text()")
+        bp = row_statistic.css("td[12]/text()")
+        c = row_statistic.css("td[13]/text()")
+        tap = row_statistic.css("td[14]/text()")
+        m = row_statistic.css("td[15]/text()")
+        fp = row_statistic.css("td[16]/text()")
+        fr = row_statistic.css("td[17]/text()")
+        mas_menos = row_statistic.css("td[18]/text()")
+        val = row_statistic.css("td[19]/text()")
+        sp = row_statistic.css("td[20]/text()")
+
+        values = {
+          minutos: minutos.to_s,  puntos: puntos.to_s,        t2: t2.to_s, 
+          t3: t3.to_s,            t1: t1.to_s,                a: a.to_s,
+          br: br.to_s,            bp: bp.to_s,                c: c.to_s, 
+          tap: tap.to_s,          m: m.to_s,                  fp: fp.to_s,
+          fr: fr.to_s,            mas_menos: mas_menos.to_s,  val: val.to_s,
+          sp: sp.to_s
+        }
+        statistic.send("#{partido}=", values)
+        statistic.save!
+      end
       puts '-----'
       puts '-----'
     end

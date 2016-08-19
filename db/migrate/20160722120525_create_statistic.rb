@@ -36,10 +36,10 @@ class CreateStatistic < ActiveRecord::Migration
       t.jsonb :week_32, default: {}
       t.jsonb :week_33, default: {}
       t.jsonb :week_34, default: {}
-      t.jsonb :average, default: {}
+      t.jsonb :promedio, default: {}
       t.jsonb :total, default: {}
 
-      t.references :player_id, index: true
+      t.references :player, index: true
     end
   end
 end
