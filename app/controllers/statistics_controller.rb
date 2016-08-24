@@ -78,25 +78,27 @@ class StatisticsController < ApplicationController
         t2 = row_statistic.css("td[4]/text()")
         t3 = row_statistic.css("td[6]/text()")
         t1 = row_statistic.css("td[8]/text()")
-        a = row_statistic.css("td[10]/text()")
-        br = row_statistic.css("td[11]/text()")
-        bp = row_statistic.css("td[12]/text()")
-        c = row_statistic.css("td[13]/text()")
-        tap = row_statistic.css("td[14]/text()")
-        m = row_statistic.css("td[15]/text()")
-        fp = row_statistic.css("td[16]/text()")
-        fr = row_statistic.css("td[17]/text()")
-        mas_menos = row_statistic.css("td[18]/text()")
-        val = row_statistic.css("td[19]/text()")
-        sp = row_statistic.css("td[20]/text()")
+        reb = row_statistic.css("td[10]/text()")
+        a = row_statistic.css("td[11]/text()")
+        br = row_statistic.css("td[12]/text()")
+        bp = row_statistic.css("td[13]/text()")
+        c = row_statistic.css("td[14]/text()")
+        tap = row_statistic.css("td[15]/text()")
+        m = row_statistic.css("td[16]/text()")
+        fp = row_statistic.css("td[17]/text()")
+        fr = row_statistic.css("td[18]/text()")
+        mas_menos = row_statistic.css("td[19]/text()")
+        v = row_statistic.css("td[20]/text()")
+        sm = row_statistic.css("td[21]/text()")
 
         values = {
-          minutos: minutos.to_s,  puntos: puntos.to_s,        t2: t2.to_s, 
-          t3: t3.to_s,            t1: t1.to_s,                a: a.to_s,
+          min: minutos.to_s,  pt: puntos.to_s,        t2: t2.to_s, 
+          t3: t3.to_s,            t1: t1.to_s,                reb: reb.to_s,
+          a: a.to_s,
           br: br.to_s,            bp: bp.to_s,                c: c.to_s, 
           tap: tap.to_s,          m: m.to_s,                  fp: fp.to_s,
-          fr: fr.to_s,            mas_menos: mas_menos.to_s,  val: val.to_s,
-          sp: sp.to_s
+          fr: fr.to_s,            mas_menos: mas_menos.to_s,  v: v.to_s,
+          sm: sm.to_s
         }
         statistic.send("#{partido}=", values)
         statistic.save!

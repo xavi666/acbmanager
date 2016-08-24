@@ -6,7 +6,9 @@
 
 class Statistic < ActiveRecord::Base
   
-  FIELDS = %w( min pt t2 t3 t1 reb a br bp c tap m fp fr mas_menos v små )  
+  FIELDS = %w( min pt t2 t3 t1 reb a br bp c tap m fp fr mas_menos v sm )  
+  FIELDS_DEFAULT = ["0'", "0", "0/0", "0/0", "0/0", "0(0+0)", "0", "0", "0", "0", "0+0", "0", "0", "0", "0", "0", "0.00" ]  
+
   NUM_GAMES = 34
 
   # !**************************************************
@@ -41,7 +43,10 @@ class Statistic < ActiveRecord::Base
 
   private
     def set_defaults
-      values = FIELDS.collect{|field| { field.to_sym => 0 } }
+      values = {}
+      self.fields.zip(self.fields_default).each do |field, default|
+        values[field] = default
+      end
       (1..NUM_GAMES).each do |week|
         self.send("week_#{week}=", values)
       end

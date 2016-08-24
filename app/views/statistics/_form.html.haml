@@ -14,23 +14,29 @@
       .col-md-5= f.text_field :season, class: 'string form-control'
     .form-group
       .col-md-3.control-label= f.label "Statistics"
-      .col-md-5
-        %table.table.table-striped
-        - (1..Statistic.num_games).each do |week|
-          - statistic = @statistic.send("week_"+week.to_s)
-          = statistic
-          - statistic.each do |field|
-            - if week == 1
-              %tr
+      .col-md-9
+        .table-responsive
+          %table.table
+            %thead
+              %th
+              - Statistic.fields.each do |field|
                 %th= field
-            %tr
-              %td=# value
-      
-        %tr
-          = @statistic.promedio
-        %tr
-          = @statistic.total
-      
+            
+              %tbody
+                - (1..Statistic.num_games).each do |week|
+                  %tr
+                    %td= week
+                    - week = @statistic.send("week_"+week.to_s)
+                    - Statistic.fields.each do |field|
+                      %td= week[field]
+                %tr
+                  %th= "Promedio"
+                  - Statistic.fields.each do |field|
+                    %th= @statistic.promedio[field]
+                %tr
+                  %th= "Total"
+                  - Statistic.fields.each do |field|
+                    %th= @statistic.total[field]
     .form-group
       .col-md-3
       .col-md-5
