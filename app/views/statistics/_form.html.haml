@@ -20,7 +20,7 @@
             %thead
               %th
               - Statistic.fields.each do |field|
-                %th= field
+                %th= t("#{field}")
             
               %tbody
                 - (1..Statistic.num_games).each do |week|
