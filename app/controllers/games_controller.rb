@@ -9,9 +9,8 @@ class GamesController < ApplicationController
 
   def index
     games_scope = Game.active
-    games_scope = games_scope.where("lower(name) ILIKE ?", "%#{params[:name].downcase}%") unless params[:name].blank?
-    games_scope = games_scope.where("team_id = ?", params[:team_id]) unless params[:team_id].blank?
-    games_scope = games_scope.where("position = ?", params[:position]) unless params[:position].blank?
+    games_scope = games_scope.where("local_team_id = ?", params[:local_team_id]) unless params[:local_team_id].blank?
+    games_scope = games_scope.where("away_team_id = ?", params[:away_team_id]) unless params[:away_team_id].blank?
 
     smart_listing_create :games, games_scope, partial: "games/listing"
   end

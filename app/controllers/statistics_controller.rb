@@ -23,9 +23,6 @@ class StatisticsController < ApplicationController
   end
 
   def update
-    puts "---> UPDATE"
-    puts statistic_params
-    puts params
     @statistic.update_attributes(statistic_params)
   end
 
@@ -59,20 +56,16 @@ class StatisticsController < ApplicationController
     player_html = Nokogiri::HTML(open(players_url))
 
     unless statistic = Statistic.where(season: "2016").where(player_id: player.id).first
-      puts "--------> STATISTIC CREATE"
       statistic = Statistic.new
       statistic.season = "2016"
       statistic.player_id = player.id
       statistic.save!
     end
-    puts statistic.inspect
 
     player_html.css("table.fichaJugadorStats > tr").each do |row_statistic|
-      puts "-------> STATISTIC"
       partido = row_statistic.css("th[1]/text()").to_s.downcase
       puts partido
       if partido == 'promedio' || partido == 'total'
-        puts "---->  Totals Promerdio"
         minutos = row_statistic.css("td[2]/text()")
         puntos = row_statistic.css("td[3]/text()")
         t2 = row_statistic.css("td[4]/text()")
@@ -92,7 +85,7 @@ class StatisticsController < ApplicationController
         sm = row_statistic.css("td[21]/text()")
 
         values = {
-          min: minutos.to_s,  pt: puntos.to_s,        t2: t2.to_s, 
+          min: minutos.to_s,      pt: puntos.to_s,            t2: t2.to_s, 
           t3: t3.to_s,            t1: t1.to_s,                reb: reb.to_s,
           a: a.to_s,
           br: br.to_s,            bp: bp.to_s,                c: c.to_s, 
@@ -103,8 +96,6 @@ class StatisticsController < ApplicationController
         statistic.send("#{partido}=", values)
         statistic.save!
       end
-      puts '-----'
-      puts '-----'
     end
   end
 
