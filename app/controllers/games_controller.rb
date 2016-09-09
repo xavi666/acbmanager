@@ -6,6 +6,7 @@ class GamesController < ApplicationController
   require 'nokogiri'
   require 'open-uri'
   require 'webrick/httputils'
+  require 'date'
 
   def index
     games_scope = Game.active
@@ -38,23 +39,28 @@ class GamesController < ApplicationController
   def import
     games_url = "http://acb.com/calendario.php?cod_competicion=LACB&cod_edicion=61&vd=1&vh=34"
     games_html = Nokogiri::HTML(open(games_url))
+    num_game = 0
 
-    games_html.css("table.menuclubs").first(2).each do |game_row|
-      #name = game_row.css('td[1]//text()').to_s
-      #team_name = game_row.css('td[2]/text()').to_s
-
-      #unless name.blank?
-      #  unless game = Player.find_by_name(name)
-      #    game = Player.new
-      #  end
-      #  game.name = name
-      #  game.team = Team.find_by_name(team_name)
-
-      #  game.href = Array.wrap(game_row.css("td[1]/a").map { |link| link['href'] })[0].to_s
-      #  game.save!
-
-      #  import_game game
-      #end
+    games_html.css("table.menuclubs > tr").each do |game_row|
+      teams = game_row.css('td[2]//text()').to_s
+      date = game_row.css('td[3]/text()').to_s
+      array_teams = teams.split(" - ")
+      local = Team.find_by_name(array_teams[0])
+      away = Team.find_by_name(array_teams[1])
+      date_time = DateTime.parse(date)
+      if local and away 
+        game = Game.where(local_team_id: local.id).where(away_team_id: away.id).first
+        unless game
+          game = Game.new
+          game.local_team_id = local.id
+          game.away_team_id = away.id
+        end
+        game.game_date = date_time
+        game.season = "2016"
+        game.round = (num_game / 8) + 1
+        game.save!
+      end
+      num_game += 1
     end
     redirect_to games_path and return
   end
@@ -90,6 +96,6 @@ class GamesController < ApplicationController
     end
 
     def game_params
-      params.require(:game).permit([:name, :short_code, :active])
+      params.require(:game).permit([:season, :round, :local_team_id, :away_team_id, :game_date])
     end
 end

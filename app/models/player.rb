@@ -8,11 +8,7 @@ class Player < ActiveRecord::Base
   # !**************************************************
   # !                Associations
   # !**************************************************
-  #has_many :statistics, dependent: :destroy
   belongs_to :team
-  #belongs_to :user_team_players
-  #has_many :predictions, dependent: :destroy
-  #has_many :prices, dependent: :destroy
 
   # !**************************************************
   # !                Validations

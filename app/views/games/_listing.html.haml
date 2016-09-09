@@ -12,19 +12,20 @@
   %table.table.table-striped
     %thead
       %th.col-md-1= smart_listing.sortable "ID", "id"
-      %th.col-md-1
+      %th.col-md-1= smart_listing.sortable "Season", "season"
+      %th.col-md-1= smart_listing.sortable "Round", "round"
       %th.col-md-3= smart_listing.sortable "Local", "local_team_id"
       %th.col-md-3= smart_listing.sortable "Visitant", "away_team_id"
-      %th.col-md-1= smart_listing.sortable "Data", "game_date"
+      %th.col-md-2= smart_listing.sortable "Data", "game_date"
       %th.col-md-1= smart_listing.sortable "Active", "active"
-      %th.col-md-2= "Options"
+      %th.col-md-1= "Options"
 
     %tbody
       - smart_listing.collection.each do |o|
         %tr.editable{data: {id: o.id}}
           = smart_listing.render object: o, partial: "games/game", locals: {object: o}
 
-      = smart_listing.item_new colspan: 7, link: new_game_path
+      = smart_listing.item_new colspan: 9, link: new_game_path
 
   -# Render nice pagination links fitted for Bootstrap 3 by default
   = smart_listing.paginate
