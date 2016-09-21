@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722120525) do
+ActiveRecord::Schema.define(version: 20160914103051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "games", force: :cascade do |t|
+    t.datetime "game_date"
+    t.string   "season"
+    t.string   "round"
+    t.integer  "local_team_id"
+    t.integer  "away_team_id"
+    t.boolean  "active",        default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "games", ["away_team_id"], name: "index_games_on_away_team_id", using: :btree
+  add_index "games", ["local_team_id"], name: "index_games_on_local_team_id", using: :btree
 
   create_table "players", force: :cascade do |t|
     t.string   "name"
@@ -36,6 +50,17 @@ ActiveRecord::Schema.define(version: 20160722120525) do
   end
 
   add_index "players", ["team_id"], name: "index_players_on_team_id", using: :btree
+
+  create_table "settings", force: :cascade do |t|
+    t.string   "name"
+    t.string   "key"
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "settings", ["key"], name: "index_settings_on_key", using: :btree
+  add_index "settings", ["value"], name: "index_settings_on_value", using: :btree
 
   create_table "statistics", force: :cascade do |t|
     t.string  "season"

@@ -9,20 +9,19 @@ class GamesController < ApplicationController
   require 'date'
 
   def index
-    games_scope = Game.active
-    games_scope = games_scope.where("lower(name) ILIKE ?", "%#{params[:name].downcase}%") unless params[:name].blank?
-    games_scope = games_scope.where("team_id = ?", params[:team_id]) unless params[:team_id].blank?
-    games_scope = games_scope.where("position = ?", params[:position]) unless params[:position].blank?
+    games_scope = Game.active.order(:game_date)
+    games_scope = games_scope.where("local_team_id = ?", params[:local_team_id]) unless params[:local_team_id].blank?
+    games_scope = games_scope.where("away_team_id = ?", params[:away_team_id]) unless params[:away_team_id].blank?
 
     smart_listing_create :games, games_scope, partial: "games/listing"
   end
 
   def new
-    @game = Player.new
+    @game = Game.new
   end
 
   def create
-    @game = Player.create(game_params)
+    @game = Game.create(game_params)
   end
 
   def edit
@@ -40,6 +39,7 @@ class GamesController < ApplicationController
     games_url = "http://acb.com/calendario.php?cod_competicion=LACB&cod_edicion=61&vd=1&vh=34"
     games_html = Nokogiri::HTML(open(games_url))
     num_game = 0
+    current_season = CURRENT_SEASON
 
     games_html.css("table.menuclubs > tr").each do |game_row|
       teams = game_row.css('td[2]//text()').to_s
@@ -56,7 +56,7 @@ class GamesController < ApplicationController
           game.away_team_id = away.id
         end
         game.game_date = date_time
-        game.season = "2016"
+        game.season = current_season
         game.round = (num_game / 8) + 1
         game.save!
       end

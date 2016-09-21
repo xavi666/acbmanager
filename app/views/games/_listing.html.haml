@@ -1,8 +1,8 @@
 = smart_listing_controls_for(:games, {class: "form-inline text-right"}) do
   -# Add search box to form - it submits the form automatically on text change
   .form-group.filter.input-append
-    = select_tag :local_team_id, options_from_collection_for_select(Team.active, 'id', 'name', params["team_id"]), class: "search form-control", :prompt => "Search by Local Team"
-    = select_tag :away_team_id, options_from_collection_for_select(Team.active, 'id', 'name', params["team_id"]), class: "search form-control", :prompt => "Search by Away Team"
+    = select_tag :local_team_id, options_from_collection_for_select(Team.active, 'id', 'name', params["local_team_id"]), class: "search form-control", :prompt => "Search by Local Team"
+    = select_tag :away_team_id, options_from_collection_for_select(Team.active, 'id', 'name', params["away_team_id"]), class: "search form-control", :prompt => "Search by Away Team"
 
 
   %button.btn.btn-primary.disabled{type: :submit}

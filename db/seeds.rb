@@ -27,3 +27,6 @@ Team.create("id"=>18, "name"=>"Valencia Basket Club", "active"=>true, "short_cod
 
 
 User.create email: "xgarcesmarti@gmail.com", password: "11111111", password_confirmation: "11111111", active: true, super_admin: true
+
+Team.create("id"=>1, "name"=>"Current Season", "key"=>"current_season", "value"=>"2016")
+Team.create("id"=>2, "name"=>"Current Round", "key"=>"current_round", "value"=>"1")

@@ -8,16 +8,24 @@
   </head>
   <body>
     Application
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    
+    <%= render partial: "back/navbar" %>
 
-    <div class="container">
-      <div class="login-container">
-        <div class="form-box">
-          <%= yield %>
+    <div class="col-xs-12">
+        <div class="col-xs-9">
+
         </div>
-      </div>
+        <div class="col-xs-3">
+          <div class="container">
+            <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
+            <div class="login-container">
+              <div class="form-box">
+                <%= yield %>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
-
   </body>
 </html>

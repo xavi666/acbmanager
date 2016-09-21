@@ -55,9 +55,11 @@ class StatisticsController < ApplicationController
     players_url = WEBrick::HTTPUtils.escape(players_url)
     player_html = Nokogiri::HTML(open(players_url))
 
-    unless statistic = Statistic.where(season: "2016").where(player_id: player.id).first
+    current_season = CURRENT_SEASON
+
+    unless statistic = Statistic.where(season: current_season).where(player_id: player.id).first
       statistic = Statistic.new
-      statistic.season = "2016"
+      statistic.season = current_season
       statistic.player_id = player.id
       statistic.save!
     end
