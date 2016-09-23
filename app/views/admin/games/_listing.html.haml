@@ -23,7 +23,7 @@
     %tbody
       - smart_listing.collection.each do |o|
         %tr.editable{data: {id: o.id}}
-          = smart_listing.render object: o, partial: "games/game", locals: {object: o}
+          = smart_listing.render object: o, partial: "admin/games/game", locals: {object: o}
 
       = smart_listing.item_new colspan: 9, link: new_game_path
 

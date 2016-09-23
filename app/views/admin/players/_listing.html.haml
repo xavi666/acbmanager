@@ -24,7 +24,7 @@
     %tbody
       - smart_listing.collection.each do |o|
         %tr.editable{data: {id: o.id}}
-          = smart_listing.render object: o, partial: "players/player", locals: {object: o}
+          = smart_listing.render object: o, partial: "admin/players/player", locals: {object: o}
 
       = smart_listing.item_new colspan: 7, link: new_player_path
 

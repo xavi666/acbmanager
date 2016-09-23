@@ -1,17 +1,25 @@
 Rails.application.routes.draw do
   devise_for :users, path: 'admins'
-  
+
   resources :teams
-  resources :players do
-    get 'import', on: :collection
+  resources :players
+  resources :games
+  resources :statistics
+  
+  namespace :admin do
+    resources :teams
+    resources :players do
+      get 'import', on: :collection
+    end
+    resources :games do
+      get 'import', on: :collection
+    end
+    resources :statistics do
+      get  'import', on: :collection
+    end
+    resources :settings
   end
-  resources :games do
-    get 'import', on: :collection
-  end
-  resources :statistics do
-    get  'import', on: :collection
-  end
-  resources :settings
+  
   root "home#index"
   
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,4 +1,5 @@
 en:
-  statistics:
-    index:
-      title: "Statistics"
+  admin:
+    statistics:
+      index:
+        title: "Statistics"

@@ -1,4 +1,4 @@
-class StatisticsController < ApplicationController
+class Admin::StatisticsController < ApplicationController
 
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
@@ -8,7 +8,7 @@ class StatisticsController < ApplicationController
   def index
     statistics_scope = Statistic.all
 
-    smart_listing_create :statistics, statistics_scope, partial: "statistics/listing"
+    smart_listing_create :statistics, statistics_scope, partial: "admin/statistics/listing"
   end
 
   def new

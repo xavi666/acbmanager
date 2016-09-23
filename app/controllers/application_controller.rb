@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   #check_authorization :unless => :devise_controller?
 
   # By default, assume no-one can see anything
-  before_filter :authenticate_user!, :check_active_account, :set_current_user, :dirty_response_headers, :set_locale
+  before_filter :check_active_account, :set_current_user, :dirty_response_headers, :set_locale
 
   # Throw away flash messages after AJAX request
   # (stops alerts etc popping up on next page load)

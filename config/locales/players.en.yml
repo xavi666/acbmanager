@@ -5,7 +5,7 @@ en:
           base: "Base"
           alero: "Alero"
           pivot: "Pívot"
-
-  players:
-    index: 
-      title: "Players"
+  admin:
+    players:
+      index: 
+        title: "Players"

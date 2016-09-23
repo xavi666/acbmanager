@@ -1,4 +1,4 @@
-class SettingsController < ApplicationController
+class Admin::SettingsController < ApplicationController
 
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
@@ -10,7 +10,7 @@ class SettingsController < ApplicationController
     settings_scope = settings_scope.where("lower(key) ILIKE ?", "%#{params[:key].downcase}%") if params[:key]
     settings_scope = settings_scope.where("lower(value) ILIKE ?", "%#{params[:value].downcase}%") if params[:value]
 
-    smart_listing_create :settings, settings_scope, partial: "settings/listing"
+    smart_listing_create :settings, settings_scope, partial: "admin/settings/listing"
   end
 
   def new

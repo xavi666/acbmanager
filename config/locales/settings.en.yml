@@ -1,4 +1,5 @@
 en:
-  settings:
-    index: 
-      title: "Settings"
+  admin:
+    settings:
+      index: 
+        title: "Settings"

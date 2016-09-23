@@ -1,4 +1,4 @@
-class PlayersController < ApplicationController
+class Admin::PlayersController < ApplicationController
 
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
@@ -13,7 +13,7 @@ class PlayersController < ApplicationController
     players_scope = players_scope.where("team_id = ?", params[:team_id]) unless params[:team_id].blank?
     players_scope = players_scope.where("position = ?", params[:position]) unless params[:position].blank?
 
-    smart_listing_create :players, players_scope, partial: "players/listing"
+    smart_listing_create :players, players_scope, partial: "admin/players/listing"
   end
 
   def new

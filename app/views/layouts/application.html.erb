@@ -7,24 +7,18 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    Application
-    
-    <%= render partial: "back/navbar" %>
-
     <div class="col-xs-12">
         <div class="col-xs-9">
-
+          <%= yield %>
         </div>
         <div class="col-xs-3">
-          <div class="container">
-            <p class="notice"><%= notice %></p>
-            <p class="alert"><%= alert %></p>
-            <div class="login-container">
-              <div class="form-box">
-                <%= yield %>
-              </div>
-            </div>
-          </div>
+          <% if user_signed_in? %>
+            Welcome: <b><%= current_user.username %> (<%= current_user.group.name %>)</b>
+            <%= link_to "Logout", destroy_user_session_path, :method => 'delete' %>
+          <% else %>
+            <%= render file: 'devise/sessions/new' %> // Rendering the partial here
+            <%= link_to "Login", new_user_session_path %>
+          <% end %>
         </div>
     </div>
   </body>

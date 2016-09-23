@@ -1,4 +1,5 @@
 en:
-  games:
-    index: 
-      title: "Games"
+  admin:
+    games:
+      index: 
+        title: "Games"
