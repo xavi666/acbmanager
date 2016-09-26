@@ -1,4 +1,4 @@
-= smart_listing_controls_for(:settings, {class: "form-inline text-right"}) do
+= smart_listing_controls_for(:teams, {class: "form-inline text-right"}) do
   -# Add search box to form - it submits the form automatically on text change
   .form-group.filter.input-append
     = text_field_tag :name, params["name"], class: "search form-control", 
@@ -11,17 +11,18 @@
   %table.table.table-striped
     %thead
       %th.col-md-1= smart_listing.sortable "ID", "id"
+      %th.col-md-1
+      %th.col-md-2= smart_listing.sortable "Short Code", "short_code"
       %th.col-md-3= smart_listing.sortable "Name", "name"
-      %th.col-md-3= smart_listing.sortable "Key", "key"
-      %th.col-md-3= smart_listing.sortable "Value", "value"
+      %th.col-md-1= smart_listing.sortable "Active", "active"
       %th.col-md-2= "Options"
 
     %tbody
       - smart_listing.collection.each do |o|
         %tr.editable{data: {id: o.id}}
-          = smart_listing.render object: o, partial: "admin/settings/setting", locals: {object: o}
+          = smart_listing.render object: o, partial: "admin/teams/team", locals: {object: o}
 
-      = smart_listing.item_new colspan: 6, link: new_admin_setting_path
+      = smart_listing.item_new colspan: 6, link: new_team_path
 
   -# Render nice pagination links fitted for Bootstrap 3 by default
   = smart_listing.paginate

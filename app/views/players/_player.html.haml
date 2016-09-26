@@ -1,0 +1,5 @@
+%td= object.id
+%td= player_image object
+%td= link_to object.name, player_path(object)
+%td= link_to object.team.name, team_path(object.team)
+%td= object.position.text

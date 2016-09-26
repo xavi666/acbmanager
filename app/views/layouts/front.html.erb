@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Acbmanager</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class="front" id="<%= params[:controller].parameterize %>_controller" data-current-section="<%= @current_section %>">
+    <div class="container">
+      <div class="row">
+        <%= render partial: "front/navbar" %>
+      </div>
+      <!-- Page Content -->
+      <div class="row content">
+        <div class="col-md-9">
+          <%= yield %>
+        </div>
+        <div class="col-md-3">
+          <div class="row">
+            <% if user_signed_in? %>
+              Welcome: <b><%= current_user.email %> </b>
+              <%= link_to "Logout", destroy_user_session_path, :method => 'delete' %>
+            <% else %>
+              <%= render file: 'devise/sessions/new' %>
+            <% end %>
+            <%#= render partial: "inc/recomendaciones" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

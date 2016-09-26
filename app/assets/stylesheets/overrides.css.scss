@@ -1,5 +1,65 @@
-.smart-listing{
-  img.team, img.player{
-    width: 24px;
+body.front{
+  padding-top: 50px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #272a2f;;
+  background-color: #272a2f;
+
+  h1, h2, h3, h4, h5{
+    font-weight: 500;
+  }
+
+  .nav{
+    li{
+      a:hover{
+        background-color: #7ec6ef;
+      }
+    }
+  }
+
+  .navbar{
+    font-weight: 500;
+    font-size: 20px;
+    background-color: #66b4e8;
+    a{
+      color: #fff;
+      }
+  }
+  .navbar, .navbar-brand{
+    margin-bottom: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  .logo{
+    position: absolute;
+    top: -31px;
+    left: 6px;
+  }
+  .white{
+    background-color: white;    
+  }
+  .content{
+    padding-top: 18px;
+    background-color: white;
   }
 }
+
+.ico_base{
+  background-color: #66B4E8;  
+}
+.ico_alero{
+  background-color: #21C130;
+}
+.ico_pivot{
+  background-color: #ED1C24;
+}
+
+.select2{
+  width: 100%;
+}
+
+/*
+ * Base structure
+ */
+
+
