@@ -56,7 +56,7 @@ class Admin::PlayersController < ApplicationController
         import_player player
       end
     end
-    redirect_to players_path and return
+    redirect_to admin_players_path and return
   end
 
   def import_player player

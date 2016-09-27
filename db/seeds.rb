@@ -9,7 +9,7 @@
 Team.create("id"=>1, "name"=>"Baloncesto Sevilla", "active"=>true, "short_code"=>"SEV")
 Team.create("id"=>2, "name"=>"CAI Zaragoza", "active"=>true, "short_code"=>"CAI")
 Team.create("id"=>3, "name"=>"Dominion Bilbao Basket", "active"=>true, "short_code"=>"BLB")
-Team.create("id"=>4, "name"=>"Divina Pastora Joventut", "active"=>true, "short_code"=>"JOV")
+Team.create("id"=>4, "name"=>"Divina Seguros Joventut", "active"=>true, "short_code"=>"JOV")
 Team.create("id"=>5, "name"=>"FC Barcelona Lassa", "active"=>true, "short_code"=>"FCB")
 Team.create("id"=>6, "name"=>"Herbalife Gran Canaria", "active"=>true, "short_code"=>"GCA")
 Team.create("id"=>7, "name"=>"ICL Manresa", "active"=>true, "short_code"=>"MAN")
@@ -28,5 +28,5 @@ Team.create("id"=>18, "name"=>"Valencia Basket Club", "active"=>true, "short_cod
 
 User.create email: "xgarcesmarti@gmail.com", password: "11111111", password_confirmation: "11111111", active: true, super_admin: true
 
-Team.create("id"=>1, "name"=>"Current Season", "key"=>"current_season", "value"=>"2016")
-Team.create("id"=>2, "name"=>"Current Round", "key"=>"current_round", "value"=>"1")
+Setting.create("id"=>1, "name"=>"Current Season", "key"=>"current_season", "value"=>"2016")
+Setting.create("id"=>2, "name"=>"Current Round", "key"=>"current_round", "value"=>"1")

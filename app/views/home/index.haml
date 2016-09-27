@@ -1,1 +1,15 @@
-Index Home View
+.row
+  .col-md-12
+    %h3="JORNADA #{CURRENT_ROUND} ACB"
+    - @games.each do |game|
+      .predictions.col-xs-12.col-sm-4.col-md-4
+        %a{:href => game_path(game.id)}
+          %div.col-xs-6.col-md-6.box.white
+            =team_image game.local_team 
+            =game.local_team.short_code
+          %div.col-xs-6.col-md-6.box.white
+            =team_image game.away_team
+            =game.away_team.short_code
+.row
+  .col-md-12
+    %h3="OPTIMIZA TU EQUIPO"

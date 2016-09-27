@@ -1,5 +1,5 @@
 class CreateGame < ActiveRecord::Migration
-  def change
+  def up
     create_table :games do |t|
       t.datetime :game_date
       t.string :season

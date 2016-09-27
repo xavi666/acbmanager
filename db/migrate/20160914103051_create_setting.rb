@@ -1,4 +1,4 @@
-class CreateSettings < ActiveRecord::Migration
+class CreateSetting < ActiveRecord::Migration
   def change
     create_table :settings do |t|
       t.string :name
