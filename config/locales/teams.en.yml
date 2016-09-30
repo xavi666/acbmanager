@@ -1,4 +1,5 @@
 en:
-  teams:
-    index: 
-      title: "Teams"
+  admin:
+    teams:
+      index: 
+        title: "Teams"

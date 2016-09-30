@@ -1,5 +1,5 @@
 %td{colspan: 7}
-  = form_for @player, url: @player.new_record? ? players_path : player_path(@player), remote: true, html: {class: "form-horizontal"} do |f|
+  = form_for @player, url: @player.new_record? ? admin_players_path : admin_player_path(@player), remote: true, html: {class: "form-horizontal"} do |f|
     .form-group
       .col-md-3.control-label= f.label "Name"
       .col-md-5= f.text_field :name, class: 'string form-control'
@@ -15,7 +15,6 @@
     .form-group
       .col-md-3.control-label= f.label "Active"
       .col-md-5= f.check_box :active
-
     .form-group
       .col-md-3
       .col-md-5

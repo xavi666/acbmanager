@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, path: 'admins'
+  devise_for :users
 
   resources :teams
   resources :players

@@ -43,24 +43,26 @@ body.front{
     background-color: white;
   }
 
-  .predictions{
+  // HOME
+  .games{
     background-color: #f1f1f1;
     padding: 10px;
     .box{
       margin-bottom: 5px;
       text-align: center;
-      font-size: 20px;
+      font-size: 14px;
       font-weight: bold;
       img.team{
         width: 65%;
       }
     }
   }
-  .prediction{
+  .game{
     img.team{
       width: 30px;
     }
   }
+  // HOME
 }
 
 .ico_base{
@@ -78,7 +80,19 @@ body.front{
 }
 
 /*
- * Base structure
+ * BACK
  */
-
+body.back{
+  table{
+    img.player,
+    img.team{
+      width: 30px;
+    }
+    .player_detail{
+      img{
+        width: 100%;
+      }
+    }
+  }
+}
 

@@ -36,10 +36,10 @@ class Admin::PlayersController < ApplicationController
   end
 
   def import
-    players_url = "http://kiaenzona.com/jugadores-liga-endesa"
+    players_url = Setting.find_by_key("players_url").value
     players_html = Nokogiri::HTML(open(players_url))
 
-    players_html.css("table.listaJugadores > tr").first(2).each do |player_row|
+    players_html.css("table.listaJugadores > tr").each do |player_row|
       name = player_row.css('td[1]//text()').to_s
       team_name = player_row.css('td[2]/text()').to_s
 
@@ -48,7 +48,7 @@ class Admin::PlayersController < ApplicationController
           player = Player.new
         end
         player.name = name
-        player.team = Team.find_by_name(team_name)
+        player.team = Team.where("name = ? OR second_name = ?", team_name, team_name).first
 
         player.href = Array.wrap(player_row.css("td[1]/a").map { |link| link['href'] })[0].to_s
         player.save!

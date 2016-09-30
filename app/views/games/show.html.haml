@@ -1,5 +1,5 @@
-%h2="Estadística del Partidos"
-%div.row.prediction
+%h2="Estadística del Partido"
+%div.row.game
   .col-md-12.table-responsive.white
     %table.table.table-striped
       %thead
@@ -15,8 +15,8 @@
         
       %thead
         %tr
-          %th=team_image @game.local_team
-          %th=@game.local_team.name
+          %th=team_image @game.away_team
+          %th=@game.away_team.name
           %th="VALORACIÓN"
           %th="PUNTOS"
           %th="ASISTENCIAS"

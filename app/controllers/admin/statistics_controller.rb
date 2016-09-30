@@ -31,7 +31,7 @@ class Admin::StatisticsController < ApplicationController
   end
 
   def import
-    players_url = "http://kiaenzona.com/jugadores-liga-endesa"
+    players_url = Setting.find_by_key("statistics_url").value
     players_html = Nokogiri::HTML(open(players_url))
 
     players_html.css("table.listaJugadores > tr").first(2).each do |player_row|
