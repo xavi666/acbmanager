@@ -36,7 +36,7 @@ class Admin::GamesController < ApplicationController
   end
 
   def import
-    games_url = "http://acb.com/calendario.php?cod_competicion=LACB&cod_edicion=61&vd=1&vh=34"
+    games_url = Setting.find_by_key("games_url").value
     games_html = Nokogiri::HTML(open(games_url))
     num_game = 0
     current_season = CURRENT_SEASON

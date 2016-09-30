@@ -12,6 +12,7 @@
           %th="REBOTES"
           %th="3PM"
       %tbody
+        = render @game.local_team.players
         
       %thead
         %tr
@@ -23,4 +24,4 @@
           %th="REBOTES"
           %th="3PM"
       %tbody
-        
+        = render @game.away_team.players

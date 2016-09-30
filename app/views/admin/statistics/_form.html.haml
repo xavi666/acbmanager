@@ -1,5 +1,5 @@
 %td{colspan: 7}
-  = form_for @statistic, url: @statistic.new_record? ? statistics_path : statistic_path(@statistic), remote: true, html: {class: "form-horizontal"} do |f|
+  = form_for @statistic, url: @statistic.new_record? ? admin_statistics_path : statistic_path(@statistic), remote: true, html: {class: "form-horizontal"} do |f|
     .form-group
       .col-md-3.control-label= f.label "Player"
       .col-md-5= @statistic.player
@@ -15,28 +15,7 @@
     .form-group
       .col-md-3.control-label= f.label "Statistics"
       .col-md-9
-        .table-responsive
-          %table.table
-            %thead
-              %th
-              - Statistic.fields.each do |field|
-                %th= t("#{field}")
-            
-              %tbody
-                - (1..Statistic.num_games).each do |week|
-                  %tr
-                    %td= week
-                    - week = @statistic.send("week_"+week.to_s)
-                    - Statistic.fields.each do |field|
-                      %td= week[field]
-                %tr
-                  %th= "Promedio"
-                  - Statistic.fields.each do |field|
-                    %th= @statistic.promedio[field]
-                %tr
-                  %th= "Total"
-                  - Statistic.fields.each do |field|
-                    %th= @statistic.total[field]
+        = render partial: "statistics_player", locals: {statistic: @statistic}
     .form-group
       .col-md-3
       .col-md-5

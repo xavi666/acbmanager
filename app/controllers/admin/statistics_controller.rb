@@ -34,7 +34,7 @@ class Admin::StatisticsController < ApplicationController
     players_url = Setting.find_by_key("statistics_url").value
     players_html = Nokogiri::HTML(open(players_url))
 
-    players_html.css("table.listaJugadores > tr").first(2).each do |player_row|
+    players_html.css("table.listaJugadores > tr").each do |player_row|
       name = player_row.css('td[1]//text()').to_s
       team_name = player_row.css('td[2]/text()').to_s
 
@@ -46,7 +46,7 @@ class Admin::StatisticsController < ApplicationController
         end
       end
     end
-    redirect_to statistics_path and return
+    redirect_to admin_statistics_path and return
   end
 
   def import_statistic player
@@ -86,13 +86,12 @@ class Admin::StatisticsController < ApplicationController
         sm = row_statistic.css("td[21]/text()")
 
         values = {
-          min: minutos.to_s,  pt: puntos.to_s,        t2: t2.to_s, 
-          t3: t3.to_s,            t1: t1.to_s,                reb: reb.to_s,
-          a: a.to_s,
-          br: br.to_s,            bp: bp.to_s,                c: c.to_s, 
-          tap: tap.to_s,          m: m.to_s,                  fp: fp.to_s,
-          fr: fr.to_s,            mas_menos: mas_menos.to_s,  v: v.to_s,
-          sm: sm.to_s
+          min: minutos.to_s,      pt: puntos.to_s,          t2: t2.to_s, 
+          t3: t3.to_s,            t1: t1.to_s,              reb: reb.to_s,
+          a: a.to_s,              br: br.to_s,              bp: bp.to_s,                
+          c: c.to_s,              tap: tap.to_s,            m: m.to_s,
+          fp: fp.to_s,            fr: fr.to_s,              mas_menos: mas_menos.to_s,
+          v: v.to_s,              sm: sm.to_s
         }
         statistic.send("#{partido}=", values)
         statistic.save!

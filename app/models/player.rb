@@ -9,6 +9,7 @@ class Player < ActiveRecord::Base
   # !                Associations
   # !**************************************************
   belongs_to :team
+  has_many :statistics
 
   # !**************************************************
   # !                Validations

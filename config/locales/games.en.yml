@@ -1,5 +1,4 @@
 en:
-  admin:
-    games:
-      index: 
-        title: "Games"
+  games:
+    index: 
+      title: "Calendario ACB"

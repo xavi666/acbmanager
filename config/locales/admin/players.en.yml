@@ -1,0 +1,11 @@
+en:
+  enumerize:
+    player:
+      position:
+          base: "Base"
+          alero: "Alero"
+          pivot: "Pívot"
+  admin:
+    players:
+      index: 
+        title: "Players"
