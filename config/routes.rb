@@ -20,6 +20,10 @@ Rails.application.routes.draw do
     resources :settings
   end
   
+  authenticated :user do
+    root :to => "admin/home#index", :as => :authenticated_root
+  end
+
   root "home#index"
   
   # The priority is based upon order of creation: first created -> highest priority.

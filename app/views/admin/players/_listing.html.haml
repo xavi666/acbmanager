@@ -26,7 +26,7 @@
         %tr.editable{data: {id: o.id}}
           = smart_listing.render object: o, partial: "admin/players/player", locals: {object: o}
 
-      = smart_listing.item_new colspan: 7, link: new_player_path
+      = smart_listing.item_new colspan: 7, link: new_admin_player_path
 
   -# Render nice pagination links fitted for Bootstrap 3 by default
   = smart_listing.paginate
