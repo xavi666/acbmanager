@@ -1,4 +1,14 @@
 en:
+  admin:
+    players:
+      index: 
+        title: "Players"
+  enumerize:
+    player:
+      position:
+          base: "Base"
+          alero: "Alero"
+          pivot: "Pívot"
   players:
     index:
       title: "Jugadores ACB"

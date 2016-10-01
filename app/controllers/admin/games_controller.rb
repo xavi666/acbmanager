@@ -47,7 +47,7 @@ class Admin::GamesController < ApplicationController
       array_teams = teams.split(" - ")
       local = Team.find_by_name(array_teams[0])
       away = Team.find_by_name(array_teams[1])
-      date_time = DateTime.parse(date)
+      date_time = !date.blank? ? DateTime.parse(date) : ""
       if local and away 
         game = Game.where(local_team_id: local.id).where(away_team_id: away.id).first
         unless game
