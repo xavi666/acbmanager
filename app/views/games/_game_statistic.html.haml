@@ -1,0 +1,4 @@
+- team.players.each do |player|
+  %tr
+    %td= player.name
+    %td= player.statistics.by_season(game.season).first.week_1

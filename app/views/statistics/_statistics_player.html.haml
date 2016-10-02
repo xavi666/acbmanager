@@ -13,10 +13,10 @@
             - Statistic.fields.each do |field|
               %td= week[field]
         %tr
-          %th= "Promedio"
+          %th{colspan: 2}= "Promedio"
           - Statistic.fields.each do |field|
             %th= statistic.promedio[field]
         %tr
-          %th= "Total"
+          %th{colspan: 2}= "Total"
           - Statistic.fields.each do |field|
             %th= statistic.total[field]

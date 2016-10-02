@@ -66,26 +66,29 @@ class Admin::StatisticsController < ApplicationController
 
     player_html.css("table.fichaJugadorStats > tr").each do |row_statistic|
       partido = row_statistic.css("th[1]/text()").to_s.downcase
-      if partido == 'promedio' || partido == 'total'
-        minutos = row_statistic.css("td[2]/text()")
-        puntos = row_statistic.css("td[3]/text()")
-        t2 = row_statistic.css("td[4]/text()")
-        t3 = row_statistic.css("td[6]/text()")
-        t1 = row_statistic.css("td[8]/text()")
-        reb = row_statistic.css("td[10]/text()")
-        a = row_statistic.css("td[11]/text()")
-        br = row_statistic.css("td[12]/text()")
-        bp = row_statistic.css("td[13]/text()")
-        c = row_statistic.css("td[14]/text()")
-        tap = row_statistic.css("td[15]/text()")
-        m = row_statistic.css("td[16]/text()")
-        fp = row_statistic.css("td[17]/text()")
-        fr = row_statistic.css("td[18]/text()")
-        mas_menos = row_statistic.css("td[19]/text()")
-        v = row_statistic.css("td[20]/text()")
-        sm = row_statistic.css("td[21]/text()")
+      if partido == 'promedio' || partido == 'total' || partido == '1'
+        partido = "week_1" if partido == '1'
+        game = row_statistic.css("td[2]/text()")
+        minutos = row_statistic.css("td[3]/text()")
+        puntos = row_statistic.css("td[4]/text()")
+        t2 = row_statistic.css("td[5]/text()")
+        t3 = row_statistic.css("td[7]/text()")
+        t1 = row_statistic.css("td[9]/text()")
+        reb = row_statistic.css("td[11]/text()")
+        a = row_statistic.css("td[12]/text()")
+        br = row_statistic.css("td[13]/text()")
+        bp = row_statistic.css("td[14]/text()")
+        c = row_statistic.css("td[15]/text()")
+        tap = row_statistic.css("td[16]/text()")
+        m = row_statistic.css("td[17]/text()")
+        fp = row_statistic.css("td[18]/text()")
+        fr = row_statistic.css("td[19]/text()")
+        mas_menos = row_statistic.css("td[20]/text()")
+        v = row_statistic.css("td[21]/text()")
+        sm = row_statistic.css("td[22]/text()")
 
         values = {
+          game: game.to_s,
           min: minutos.to_s,      pt: puntos.to_s,          t2: t2.to_s, 
           t3: t3.to_s,            t1: t1.to_s,              reb: reb.to_s,
           a: a.to_s,              br: br.to_s,              bp: bp.to_s,                

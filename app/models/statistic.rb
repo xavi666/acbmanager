@@ -6,11 +6,10 @@
 
 class Statistic < ActiveRecord::Base
   
-  FIELDS = %w( min pt t2 t3 t1 reb a br bp c tap m fp fr mas_menos v sm )  
-  FIELDS_DEFAULT = ["0'", "0", "0/0", "0/0", "0/0", "0(0+0)", "0", "0", "0", "0", "0+0", "0", "0", "0", "0", "0", "0.00" ]  
+  FIELDS = %w( game min pt t2 t3 t1 reb a br bp c tap m fp fr mas_menos v sm )  
+  FIELDS_DEFAULT = ["-", "0'", "0", "0/0", "0/0", "0/0", "0(0+0)", "0", "0", "0", "0", "0+0", "0", "0", "0", "0", "0", "0.00" ]  
 
-  #FIELDS_DEFAULT = ["15'", "10", "1/9", "4/6", "6/8", "9(5+7)", "8", "7", "6", "5", "6+7", "0", "6", "7", "5", "7", "12.68" ]  
-  NUM_GAMES = 34
+  NUM_GAMES = Setting.find_by_key("session_rounds").value.to_i
 
   # !**************************************************
   # !                Associations
@@ -24,18 +23,20 @@ class Statistic < ActiveRecord::Base
   # !**************************************************
   # !                Callbacks
   # !**************************************************
-  before_save :set_defaults
+  #before_save :set_defaults
 
   # !**************************************************
   # !                  Other
   # !**************************************************  
-
+  scope :by_season, -> (season) { where(:season => season) }
+  scope :by_round,  -> (round)  { where(:round  => round) }
+  
   def to_s
     season + " - " + player.to_s
   end
 
   def self.num_games
-    NUM_GAMES
+    NUM_GAMES.to_i
   end
 
   def self.fields
