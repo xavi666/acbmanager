@@ -1,6 +1,6 @@
 .row
   .col-md-12
-    %h3="JORNADA #{CURRENT_ROUND} ACB"
+    %h3= t('jornada_acb', round: CURRENT_ROUND)
     - @games.each do |game|
       .games.col-xs-12.col-sm-3.col-md-3
         %a{:href => game_path(game.id)}
@@ -11,7 +11,7 @@
             = team_image game.away_team
             = game.away_team.short_code
           %div.col-xs12.col-md-12.box.white
-            = #game.game_date.to_formatted_s(:short)
+            = game.game_date.to_formatted_s(:short)
 .row
   .col-md-12
     %h3="OPTIMIZA TU EQUIPO"

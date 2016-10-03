@@ -8,7 +8,7 @@ class TeamsController < ApplicationController
     teams_scope = Team.active
     teams_scope = teams_scope.where("lower(name) ILIKE ?", "%#{params[:name].downcase}%") if params[:name]
 
-    smart_listing_create :teams, teams_scope, partial: "admin/teams/listing"
+    smart_listing_create :teams, teams_scope, partial: "teams/listing"
   end
 
   private

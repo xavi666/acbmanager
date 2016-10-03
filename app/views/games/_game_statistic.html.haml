@@ -1,4 +1,8 @@
 - team.players.each do |player|
-  %tr
-    %td= player.name
-    %td= player.statistics.by_season(game.season).first.week_1
+  - statistic = player.statistics.by_season(game.season).first.send("week_#{game.round}")
+  - if statistic["game"]
+    %tr
+      %td= player_image player
+      %td= link_to player.name, player
+      - Statistic.fields.each do |field|
+        %td= statistic[field] if field != 'game'

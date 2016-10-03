@@ -1,4 +1,8 @@
 en:
+  activerecord:
+    attributes:
+      statistics:
+        mas_menos: "+/-"
   admin:
     statistics:
       index:

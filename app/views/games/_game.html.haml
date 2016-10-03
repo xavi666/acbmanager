@@ -1,12 +1,4 @@
-%td= object.id
-%td= object.season
 %td= object.round
 %td= link_to object.local_team.name, object.local_team
 %td= link_to object.away_team.name, object.away_team
 %td= object.game_date
-%td
-  - if object.active
-    %i.glyphicon.glyphicon-ok
-  - else
-    %i.glyphicon.glyphicon-remove
-%td.actions= smart_listing_item_actions [{name: :custom, url: edit_game_path(object), icon: "glyphicon glyphicon-active", remote: true, if: !object.active?, title:  "Activate game"}, {name: :edit, url: edit_game_path(object)}, {name: :destroy, url: game_path(object), confirmation: "Are you sure you want to delete this?"}]

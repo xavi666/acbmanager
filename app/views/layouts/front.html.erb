@@ -18,13 +18,15 @@
         </div>
         <div class="col-md-3">
           <div class="row">
+            <%= render partial: 'front/previous_round_games' if @games_previous_round %>
+          </div>
+          <div class="row">
             <% if user_signed_in? %>
               Welcome: <b><%= current_user.email %> </b>
               <%= link_to "Logout", destroy_user_session_path, :method => 'delete' %>
             <% else %>
               <%= render file: 'devise/sessions/new' %>
             <% end %>
-            <%#= render partial: "inc/recomendaciones" %>
           </div>
         </div>
       </div>

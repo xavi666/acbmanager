@@ -22,7 +22,7 @@ class Game < ActiveRecord::Base
   # !**************************************************
   # !                  Other
   # !**************************************************  
-  default_scope { order(game_date: :asc) }
+  default_scope { order(round: :asc).order(game_date: :asc) }
   scope :by_season, -> (season) { where(:season => season) }
   scope :by_round,  -> (round)  { where(:round  => round) }
 

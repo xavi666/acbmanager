@@ -1,29 +1,21 @@
-%h2="Estadística del Partido"
+%h2="Estadísticas del #{@game.local_team} - #{@game.away_team}"
 %div.row.game
   .col-md-12.table-responsive.white
-    %table.table.table-striped
+    %table.table.table-striped.statistic
       %thead
         %tr
-          %th
-            =team_image @game.local_team
-            =@game.local_team.name
-          %th="VALORACIÓN"
-          %th="PUNTOS"
-          %th="ASISTENCIAS"
-          %th="REBOTES"
-          %th="3PM"
+          %th=team_image @game.local_team
+          %th=@game.local_team.name
+          - Statistic.fields.each do |field|
+            %th= t("#{field}") if field != 'game'
       %tbody
         = render partial: "game_statistic", locals: {team: @game.local_team, game: @game}
         
       %thead
         %tr
-          %th
-            =team_image @game.away_team
-            =@game.away_team.name
-          %th="VALORACIÓN"
-          %th="PUNTOS"
-          %th="ASISTENCIAS"
-          %th="REBOTES"
-          %th="3PM"
+          %th=team_image @game.away_team
+          %th=@game.away_team.name
+          - Statistic.fields.each do |field|
+            %th= t("#{field}") if field != 'game'
       %tbody
         = render partial: "game_statistic", locals: {team: @game.away_team, game: @game}
