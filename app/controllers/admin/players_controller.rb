@@ -37,7 +37,7 @@ class Admin::PlayersController < ApplicationController
 
   def calculate_prices
     puts "---> calculate_price"
-    Player.where(id: 141).each do |player|
+    Player.where(id: 66).each do |player|
       precio_jornada_1 = 0
       statistic = player.statistics.first
       points = statistic.week_1["sm"].to_f
@@ -99,8 +99,8 @@ class Admin::PlayersController < ApplicationController
       player.place_of_birth = place_of_birth
     end
     player_html.css("td.fichaJugadorimg").each do |player_image|
-      image = Array.wrap(player_image.css("img").map { |link| link['src'] })[0].to_s
-      player.image = image
+      #image = Array.wrap(player_image.css("img").map { |link| link['src'] })[0].to_s
+      #player.image = image
     end
     player_html.css("table.fichaJugadorSM").each do |player_sm|
       price = player_sm.css('tr[3]/td[2]/text()')
