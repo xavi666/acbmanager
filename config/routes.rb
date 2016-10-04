@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :teams
     resources :players do
       get 'import', on: :collection
+      get 'calculate_prices', on: :collection
     end
     resources :games do
       get 'import', on: :collection

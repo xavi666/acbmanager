@@ -7,7 +7,7 @@
       %table.table.table-striped.table-condensed
         %tbody
           %tr
-            %td.player_detail.col-xs-2{rowspan: 5}
+            %td.player_detail.col-xs-2{rowspan: 6}
               = player_image @player
           %tr
             %th= "Position"
@@ -21,6 +21,9 @@
           %tr 
             %th= "Place of Birth"
             %td= @player.place_of_birth
+          %tr 
+            %th= "Price"
+            %td= @player.price[CURRENT_ROUND]
   .col-xs-12
     %h1= "Acumulats 2015"
   .col-xs-12

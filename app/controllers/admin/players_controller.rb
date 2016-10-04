@@ -35,6 +35,28 @@ class Admin::PlayersController < ApplicationController
     @player.destroy
   end
 
+  def calculate_prices
+    puts "---> calculate_price"
+    Player.where(id: 141).each do |player|
+      precio_jornada_1 = 0
+      statistic = player.statistics.first
+      points = statistic.week_1["sm"].to_f
+      precio_ahora = player.price[CURRENT_ROUND].to_f
+      
+      puts points
+      precio_teorico = points * 70000
+      puts precio_teorico
+      if precio_ahora * 1.15.to_f < precio_teorico
+        precio_jornada_1 = (precio_ahora / 1.15.to_f).round(3)
+      else
+        precio_jornada_1 = precio_teorico.round(3)
+      end
+
+      puts "Precio Jornada 1 = "+precio_jornada_1.to_s
+    end
+    redirect_to admin_players_path and return
+  end
+
   def import
     players_url = Setting.find_by_key("players_url").value
     players_html = Nokogiri::HTML(open(players_url))
