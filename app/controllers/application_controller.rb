@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   #check_authorization :unless => :devise_controller?
 
   # By default, assume no-one can see anything
-  before_filter :check_active_account, :set_current_user, :dirty_response_headers, :set_locale, :get_data
+  before_filter :check_active_account, :set_current_user, :dirty_response_headers, :set_locale, :init_layout_data
 
   # Throw away flash messages after AJAX request
   # (stops alerts etc popping up on next page load)
@@ -57,8 +57,8 @@ class ApplicationController < ActionController::Base
     I18n.locale = params[:locale] || I18n.default_locale
   end
 
-  def get_data
-    @games_previous_round = Game.by_season(CURRENT_SEASON).by_round(CURRENT_ROUND.to_i - 1) if CURRENT_ROUND.to_i > 1
+  def init_layout_data
+    @round_games = Game.by_season(CURRENT_SEASON).by_round(CURRENT_ROUND.to_i - 1) if CURRENT_ROUND.to_i > 1
   end
 
   private

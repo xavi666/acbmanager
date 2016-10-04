@@ -2,6 +2,7 @@
 %td= player_image object
 %td= link_to object.name, admin_player_path(object)
 %td= link_to object.team.name, admin_team_path(object.team) if object.team
+%td= object.price[CURRENT_ROUND]
 %td= object.position.text
 %td
   - if object.active

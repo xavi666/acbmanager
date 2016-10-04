@@ -17,8 +17,8 @@
           <%= yield %>
         </div>
         <div class="col-md-3">
-          <div class="row">
-            <%= render partial: 'front/previous_round_games' if @games_previous_round %>
+          <div class="row" id="calendario_home">
+            <%= render partial: 'games/round', locals: {round: CURRENT_ROUND.to_i-1, games: @round_games} if @round_games.any? %>
           </div>
           <div class="row">
             <% if user_signed_in? %>

@@ -27,8 +27,6 @@ class Player < ActiveRecord::Base
   extend Enumerize
   enumerize :position, in: ["base", "alero", "pivot"], predicates: true
   
-  monetize :price_cents, allow_nil: true
-
   def to_s
     name
   end

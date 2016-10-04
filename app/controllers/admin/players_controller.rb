@@ -70,7 +70,6 @@ class Admin::PlayersController < ApplicationController
       height = player_data.css('p[3]/strong[1]/text()').to_s
       date_of_birth = player_data.css('p[5]/strong[1]/text()').to_s
       place_of_birth = player_data.css('p[5]/strong[2]/text()').to_s
-      
 
       player.position_detail = position_detail
       player.height = height
@@ -80,6 +79,10 @@ class Admin::PlayersController < ApplicationController
     player_html.css("td.fichaJugadorimg").each do |player_image|
       image = Array.wrap(player_image.css("img").map { |link| link['src'] })[0].to_s
       player.image = image
+    end
+    player_html.css("table.fichaJugadorSM").each do |player_sm|
+      price = player_sm.css('tr[3]/td[2]/text()')
+      player.price = {"#{CURRENT_ROUND}" => "#{price}"}
     end
     player.save!
   end

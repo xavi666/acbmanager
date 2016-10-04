@@ -1,6 +1,13 @@
-%h4= t('resultados_jornada_acb', round: CURRENT_ROUND.to_i-1)
+%h5.text-cente
+  - if round > 1
+    = link_to games_round_url(round_id: round-1), remote: true do
+      %span.glyphicon.glyphicon-triangle-left
+  = t('resultados_jornada_acb', round: round)
+  = link_to games_round_url(round_id: round+1), remote: true do
+    %span.glyphicon.glyphicon-triangle-right
+
 %table.table.table-striped
-  - @games_previous_round.each do |game|
+  - games.each do |game|
     %tr
       %td=link_to game.local_team.short_code, game.local_team, :"title" => game.local_team.name
       %td=link_to "32", game, :"title" => "#{t('estadisticas')} #{game.local_team.name} - #{game.away_team.name}"

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  
+  # FRONT-END
   devise_for :users
 
   resources :teams
@@ -6,6 +8,9 @@ Rails.application.routes.draw do
   resources :games
   resources :statistics
   
+  get 'games/:round_id/round' => 'games#round', as: :games_round
+
+  # BACK-END
   namespace :admin do
     resources :teams
     resources :players do
@@ -20,6 +25,8 @@ Rails.application.routes.draw do
     resources :settings
   end
   
+
+  # ROOT
   authenticated :user do
     root :to => "admin/home#index", :as => :authenticated_root
   end
