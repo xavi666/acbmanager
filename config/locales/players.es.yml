@@ -1,8 +1,11 @@
-en:
+es:  
+  activerecord:
+    models:
+      player: "Jugador"
   admin:
     players:
       index: 
-        title: "Players"
+        title: "Jugadores"
   enumerize:
     player:
       position:

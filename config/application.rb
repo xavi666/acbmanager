@@ -20,7 +20,7 @@ module Acbmanager
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     I18n.load_path += Dir[Rails.root.join('lib', 'locale', '*.{rb,yml}')]
-    config.i18n.default_locale = :en
+    config.i18n.default_locale = :es
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
