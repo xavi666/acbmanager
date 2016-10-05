@@ -11,6 +11,9 @@
     - games.each do |game|
       %tr
         %td=link_to game.local_team.short_code, game.local_team, :"title" => game.local_team.name
-        %td=link_to "32", game, :"title" => "#{t('estadisticas')} #{game.local_team.name} - #{game.away_team.name}"
-        %td=link_to "34", game, :"title" => "#{t('estadisticas')} #{game.local_team.name} - #{game.away_team.name}"
+        - unless game.local_score.blank? and game.away_score.blank?
+          %td=link_to game.local_score, game, :"title" => "#{t('estadisticas')} #{game.local_team.name} - #{game.away_team.name}"
+          %td=link_to game.away_score, game, :"title" => "#{t('estadisticas')} #{game.local_team.name} - #{game.away_team.name}"
+        - else
+          %td= short_date game.game_date
         %td=link_to game.away_team.short_code, game.away_team, :"title" => game.away_team.name

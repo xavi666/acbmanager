@@ -41,13 +41,13 @@ class Admin::GamesController < ApplicationController
     num_game = 0
     current_season = CURRENT_SEASON
 
-    games_html.css("table.menuclubs > tr").each do |game_row|
+    games_html.css("table.menuclubs > tr").first(2).each do |game_row|
       teams = game_row.css('td[2]//text()').to_s
-      date = game_row.css('td[3]/text()').to_s
+      date_score = game_row.css('td[3]//text()').to_s
       array_teams = teams.split(" - ")
       local = Team.find_by_name(array_teams[0])
       away = Team.find_by_name(array_teams[1])
-      date_time = !date.blank? ? DateTime.parse(date) : ""
+
       if local and away 
         game = Game.where(local_team_id: local.id).where(away_team_id: away.id).first
         unless game
@@ -55,14 +55,23 @@ class Admin::GamesController < ApplicationController
           game.local_team_id = local.id
           game.away_team_id = away.id
         end
-        game.game_date = date_time
+
+        # Sate - Result
+        if date_score.include? ' - '
+          array_score = date_score.split(" - ")
+          game.local_score = array_score[0]
+          game.away_score = array_score[1]
+        else
+          game.game_date = !date_score.blank? ? DateTime.parse(date_score) : ""
+        end
+
         game.season = current_season
         game.round = (num_game / 8) + 1
         game.save!
       end
       num_game += 1
     end
-    redirect_to games_path and return
+    redirect_to admin_games_path and return
   end
 
   def import_game game

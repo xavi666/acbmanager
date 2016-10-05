@@ -25,6 +25,4 @@
             %th= "Price"
             %td= @player.price[CURRENT_ROUND]
   .col-xs-12
-    %h1= "Acumulats 2015"
-  .col-xs-12
     = render partial: "statistics/statistics_player", locals: {statistic: @player.statistics.last}

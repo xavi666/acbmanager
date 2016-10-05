@@ -11,6 +11,10 @@ class TeamsController < ApplicationController
     smart_listing_create :teams, teams_scope, partial: "teams/listing"
   end
 
+  def show
+    
+  end
+
   private
     def find_team
       @team = Team.find(params[:id])

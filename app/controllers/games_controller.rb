@@ -11,6 +11,10 @@ class GamesController < ApplicationController
     smart_listing_create :games, games_scope, partial: "games/listing"
   end
 
+  def show
+    @game = Game.find params[:id]
+  end
+
   def round
     @round = params[:round_id].to_i
     @round_games = Game.by_season(CURRENT_SEASON).by_round(params[:round_id]) if @round
