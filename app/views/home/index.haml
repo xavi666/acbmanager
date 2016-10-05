@@ -3,7 +3,7 @@
     %h3= t('jornada_acb', round: CURRENT_ROUND)
     - @games.each do |game|
       .games.col-xs-12.col-sm-3.col-md-3
-        %a{:href => game_path(game.id)}
+        %a{:href => game_path(game)}
           %div.col-xs-6.col-md-6.box.white
             = team_image game.local_team 
             = game.local_team.short_code

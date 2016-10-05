@@ -44,4 +44,8 @@ class Player < ActiveRecord::Base
     end
   end
 
+  def to_param
+    [id.to_s, name.parameterize].join(",")
+  end
+
 end

@@ -33,4 +33,8 @@ class Game < ActiveRecord::Base
   def self.active
     where(active: true)
   end
+
+  def to_param
+    [id.to_s, local_team.name.parameterize, away_team.name.parameterize].join("-")
+  end
 end
