@@ -11,30 +11,20 @@
               = player_image @player
           %tr
             %th= "Position"
-            %td= @player.position
+            %td= @player.position.text if @player.position
           %tr
             %th= "Height"
             %td= @player.height
           %tr
             %th= "Date of Birth"
-            %td= @player.date_of_birth.to_s(:short_date)
+            %td= @player.date_of_birth.to_s(:short_date) if @player.date_of_birth
           %tr 
             %th= "Place of Birth"
-            %td= @player.place_of_birth
+            %td= @player.place_of_birth 
           %tr 
             %th= "Price"
             %td= @player.price[CURRENT_ROUND]
   .col-xs-12
     %h1= "Acumulats 2015"
   .col-xs-12
-    .table-responsive
-      %table.table.table-striped.table-condensed
-        %thead.sortable
-          %tr
-            %th.col-xs-2= "ID"
-            %th.col-xs-2= "Jornada"
-            %th.col-xs-2= "Equip"
-            %th.col-xs-2= "Rival"
-            %th.col-xs-2= "Acumulats Fets"
-            %th.col-xs-2= "Acumulats Rebuts"
-        %tbody=# render @player.statistics.player.where(season: "2015").order(:game_number)
+    = render partial: "statistics/statistics_player", locals: {statistic: @player.statistics.last}

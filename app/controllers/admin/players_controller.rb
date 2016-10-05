@@ -36,23 +36,23 @@ class Admin::PlayersController < ApplicationController
   end
 
   def calculate_prices
-    puts "---> calculate_price"
-    Player.where(id: 66).each do |player|
-      precio_jornada_1 = 0
-      statistic = player.statistics.first
-      points = statistic.week_1["sm"].to_f
-      precio_ahora = player.price[CURRENT_ROUND].to_f
-      
-      puts points
-      precio_teorico = points * 70000
-      puts precio_teorico
-      if precio_ahora * 1.15.to_f < precio_teorico
-        precio_jornada_1 = (precio_ahora / 1.15.to_f).round(3)
-      else
-        precio_jornada_1 = precio_teorico.round(3)
-      end
+    players_url = "http://www.rincondelmanager.com/smgr/stats.php?nombre="
+    not_found_players = []
 
-      puts "Precio Jornada 1 = "+precio_jornada_1.to_s
+    Player.all.each do |player|
+      player_url = WEBrick::HTTPUtils.escape(players_url + player.name)
+      if player_html = Nokogiri::HTML(open(player_url))
+
+        price_up_down = player_html.css("table.sm_jug > tr[3] > td[13] > b > text()").first.to_s.gsub(',', '.').to_f
+        player.price["1"] = (player.price["2"] + price_up_down * -1.to_f).round(3) if player.price["2"]
+        player.save!
+      else
+        not_found_players << player
+      end
+    end
+    puts "Not Found Players = "+not_found_players.count.to_s
+    not_found_players.each do |p|
+      puts p.name
     end
     redirect_to admin_players_path and return
   end
@@ -104,7 +104,7 @@ class Admin::PlayersController < ApplicationController
     end
     player_html.css("table.fichaJugadorSM").each do |player_sm|
       price = player_sm.css('tr[3]/td[2]/text()')
-      player.price = {"#{CURRENT_ROUND}" => "#{price}"}
+      player.price["#{CURRENT_ROUND}"] = "#{price}".to_f
     end
     player.save!
   end
