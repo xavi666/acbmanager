@@ -6,7 +6,7 @@ es:
   admin:
     statistics:
       index:
-        title: "Statistics"
+        title: "Estadísticas"
   statistics:
     index:
       title: "Estadísticas"

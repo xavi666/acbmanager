@@ -21,6 +21,11 @@
 
 es:
   acb: "ACB"
+  front:
+    navbar:
+      games: "Calendario ACB"
+      players: "Jugadores"
+      teams: "Equipos"
   mas_menos:  "+/-"
   estadistica: "Estadística"
   estadisticas: "Estadísticas del #{local} - #{away}"

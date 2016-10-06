@@ -2,7 +2,7 @@ es:
   admin:
     games:
       index: 
-        title: "Games"
+        title: "Partidos"
   games:
     index: 
       title: "Calendario ACB"
